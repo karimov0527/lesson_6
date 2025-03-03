@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto p-6">
-        <header class="text-center mb-10">
+    <div class="container mx-auto p-6 relative">
+        <header class="text-center mb-10 relative">
             <h1 class="text-5xl font-bold text-blue-700 drop-shadow-md">Smartfonlar</h1>
             <p class="text-lg text-gray-600 italic">Eng yangi smartfonlarni tanlang!</p>
+
+            <!-- 🔹 "Qo‘shish" tugmasi (yuqori o‘ng burchakda) -->
+            <a href="{% url 'smartphone_create' %}" class="absolute top-0 right-0 mt-2 mr-2 bg-blue-600 text-white text-xl px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition duration-300">
+                ➕ Qo‘shish
+            </a>
         </header>
 
         <nav class="bg-gradient-to-r from-blue-500 to-indigo-600 shadow-lg p-4 mb-6 flex justify-center space-x-8 rounded-lg">
             <a href="" class="text-white font-semibold hover:underline transition duration-300">📱 Smartfonlar</a>
             <a href="/laptops/" class="text-white font-semibold hover:underline transition duration-300">💻 Noutbuklar</a>
-            <a href="/televesions/" class="text-white font-semibold hover:underline transition duration-300">📺 Televizorlar</a>
+            <a href="/televisions/" class="text-white font-semibold hover:underline transition duration-300">📺 Televizorlar</a>
             <a href="/aksessuars/" class="text-white font-semibold hover:underline transition duration-300">🎧 Aksessuarlar</a>
         </nav>
         
@@ -24,7 +29,11 @@
             {% for smartphone in smartphones %}
             <div class="bg-white shadow-lg rounded-xl overflow-hidden">
                 <a href="smartphone/{{ smartphone.id }}">
-                    <img src="{{ smartphone.image.url }}" alt="{{ smartphone.make }} {{ smartphone.model }}" class="w-full h-48 object-cover">
+                    {% if smartphone.image %}
+                        <img src="{{ smartphone.image.url }}" alt="{{ smartphone.make }} {{ smartphone.model }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <img src="/media/default-image.png" alt="No Image Available" class="w-full h-48 object-cover">
+                    {% endif %}
                 </a>
                 <div class="p-4">
                     <h2 class="text-xl font-semibold">{{ smartphone.make }} {{ smartphone.model }}</h2>

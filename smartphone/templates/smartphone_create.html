@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangi Smartfon Qo‘shish</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center mb-4">Yangi Smartfon Qo‘shish</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="make" class="form-control" placeholder="Brend (Masalan: Apple)">
+                <input type="text" name="model" class="form-control" placeholder="Model (Masalan: iPhone 13)">
+                <input type="number" name="memory" class="form-control" placeholder="Xotira (GB)">
+                <input type="text" name="color" class="form-control" placeholder="Rang">
+                <input type="number" name="price" class="form-control" placeholder="Narx ($)">
+                <textarea name="description" class="form-control" placeholder="Tavsif"></textarea>
+                <input type="file" name="image" class="form-control">
+                <button type="submit" class="btn btn-primary">Smartfonni Qo‘shish</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

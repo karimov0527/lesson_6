@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartfonni Yangilash</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center mb-4">Smartfonni Yangilash</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="form-label">Brend</label>
+                <input type="text" name="make" class="form-control" value="{{ smartphone.make }}" placeholder="Brend (Masalan: Apple)">
+
+                <label class="form-label">Model</label>
+                <input type="text" name="model" class="form-control" value="{{ smartphone.model }}" placeholder="Model (Masalan: iPhone 13)">
+
+                <label class="form-label">Seriya Raqami</label>
+                <input type="number" name="number" class="form-control" value="{{ smartphone.number }}" placeholder="Seriya Raqami">
+
+                <label class="form-label">Rang</label>
+                <input type="text" name="color" class="form-control" value="{{ smartphone.color }}" placeholder="Rang">
+
+                <label class="form-label">Narx ($)</label>
+                <input type="text" name="price" class="form-control" value="{{ smartphone.price }}" placeholder="Narx">
+
+                <label class="form-label">Tavsif</label>
+                <textarea name="description" class="form-control" placeholder="Tavsif">{{ smartphone.description }}</textarea>
+
+                <label class="form-label">Rasm</label>
+                <input type="file" name="image" class="form-control">
+                {% if smartphone.image %}
+                    <div class="mt-2 text-center">
+                        <img src="{{ smartphone.image.url }}" alt="Smartfon rasmi" class="img-thumbnail" width="150">
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary mt-3">Yangilash</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
